@@ -46,9 +46,43 @@ The toolkit is organized around practical modules for end-to-end work:
 
 Python package and R package are included in the same repository to support both communities.
 
-- `matezaML/` (Python package)
-- `tests/`
-- `examples/`
+Canonical Python architecture:
+
+```text
+matezaML/
+  matezaML/
+    __init__.py
+    _version.py
+    types.py
+    pipeline.py
+    preprocessing/
+      __init__.py
+      imputer.py
+      scaling.py
+      encoding.py
+      outliers.py
+    models/
+      __init__.py
+      baseline.py
+    evaluation/
+      __init__.py
+      classification.py
+      report.py
+    fairness/
+      __init__.py
+      demographic_parity.py
+      report.py
+  tests/
+  examples/
+```
+
+Module responsibilities:
+
+- `preprocessing`: missing-value handling, scaling, encoding, and outlier capping
+- `models`: lightweight baseline estimators and model factories
+- `evaluation`: imbalance-aware classification metrics and reporting helpers
+- `fairness`: demographic parity metrics and group-level fairness reports
+- `pipeline`: simple, sklearn-like end-to-end pipeline orchestration
 
 ## Vision
 
@@ -71,4 +105,5 @@ MIT License
 
 ## Author
 
-Alban Manishimwe
+Alban @Cofounder at Mateza
+a(dot)manishimwe(a)mateza(dot)rw
