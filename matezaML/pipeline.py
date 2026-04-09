@@ -22,7 +22,11 @@ class Pipeline:
     def fit(self, X, y):
         X_current = X
         for _, transformer in self.transformers:
-            X_current = transformer.fit_transform(X_current, y)
+            if hasattr(transformer, "fit_transform"):
+                X_current = transformer.fit_transform(X_current, y)
+            else:
+                transformer.fit(X_current, y)
+                X_current = transformer.transform(X_current)
 
         _, estimator = self.estimator
         estimator.fit(X_current, y)
